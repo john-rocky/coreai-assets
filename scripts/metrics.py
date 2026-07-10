@@ -115,7 +115,14 @@ def hf_downloads():
     rows = [(today, m["id"], m.get("downloads", 0), m.get("likes", 0)) for m in models]
     merge_csv(f"{STATS}/hf-downloads.csv",
               ["snapshot_date", "model", "downloads", "likes"], 2, rows)
-    print(f"hf: {len(rows)} models")
+    # Shields endpoint badge: monthly downloads across Core AI models only.
+    total = sum(m.get("downloads", 0) for m in models if "coreai" in m["id"].lower())
+    msg = f"{total/1000:.1f}k" if total >= 1000 else str(total)
+    os.makedirs("badge", exist_ok=True)
+    with open("badge/hf-downloads.json", "w") as f:
+        json.dump({"schemaVersion": 1, "label": "🤗 downloads/month",
+                   "message": msg, "color": "blue"}, f)
+    print(f"hf: {len(rows)} models, coreai total {total}")
 
 
 if __name__ == "__main__":

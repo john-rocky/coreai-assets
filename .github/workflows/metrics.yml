@@ -17,9 +17,14 @@ jobs:
       - name: Snapshot HF downloads
         run: python3 scripts/metrics.py hf
 
+      - name: Rebuild downloads chart
+        run: |
+          pip install --quiet matplotlib
+          python3 scripts/hf_chart.py
+
       - name: Commit
         run: |
           git config user.name "metrics-bot"
           git config user.email "metrics-bot@users.noreply.github.com"
-          git add stats
+          git add stats badge charts
           git diff --cached --quiet || { git commit -m "Metrics: weekly snapshot"; git push; }
