@@ -2,7 +2,7 @@ name: Metrics
 
 on:
   schedule:
-    - cron: '30 0 * * 1'   # Monday 09:30 JST
+    - cron: '30 0 * * *'   # daily 09:30 JST
   workflow_dispatch:
 
 permissions:
