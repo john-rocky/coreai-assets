@@ -9,8 +9,11 @@ real run on the machine named beside it.
 One sentence — *"The bass player from Vyrantha read the lead sheet."* — read by two on-device
 Core AI text-to-speech models, with a third reading back what each one said.
 
-- **Kokoro-82M** reaches its dictionary G2P, cannot look up the invented name, and spells it out:
-  Parakeet transcribes *"The bass player from V Y R A N T H A Read the Lead Sheet"*.
+- **Kokoro-82M**, through CoreAIKit's dictionary G2P, cannot look up the invented name and spells
+  it out: Parakeet transcribes *"The bass player from V Y R A N T H A Read the Lead Sheet"*.
+  The spelling is that G2P's design, not the model's: misaki's full pipeline has a seq2seq
+  fallback for out-of-dictionary words, and it needs Python, so the on-device port ships the
+  dictionary core alone. The clip says so on its last card.
 - **pocket-tts** takes the text itself and has no G2P layer to miss with:
   *"The bass player from Virantha read the lead sheet."*
 
