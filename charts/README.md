@@ -11,13 +11,16 @@ raw.githubusercontent serves these with `content-type: image/png`, so they work 
 
 ## devicemark-board.png / devicemark-og.png
 
-The DeviceMark leaderboard as a bar chart. `devicemark-board.png` (1144×648) is the
-chart at its content bounds — attach this one to a post. `devicemark-og.png` (1238×648)
-is the same image padded left/right to 1.91:1 so the X link-card crop cannot clip the
-title; `devicemark.github.io` points its `og:image` and `twitter:image` here.
+The DeviceMark leaderboard as a bar chart. `devicemark-board.png` (2288×1296 = 1144×648
+at 2x, re-rendered 2026-08-20 for retina-sharp text) — attach this one to a post.
+`devicemark-og.png` (2476×1296) is the same image padded left/right to 1.91:1 so the
+X link-card crop cannot clip the title; `devicemark.github.io` points its `og:image`
+and `twitter:image` here.
 
-**The SVG source was lost** (left in a session scratchpad, which is cleared between
-sessions). Rebuild from this spec rather than hunting for it:
+**Source is saved this time**: `gen_board_chart.py` reads `devicemark/site/board.json`,
+writes `devicemark-board.svg`, and renders both PNGs at 2x via Chrome headless (it
+asserts the printed scores against the published values, so a drifted board.json
+fails loudly instead of shipping wrong numbers). The spec it implements:
 
 - **Data**: `devicemark/site/board.json`, the 10 rows with `native_runtime != "cloud-api"`,
   sorted by `composite.value` descending. The 2 cloud rows are deliberately excluded —
