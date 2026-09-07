@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1144" height="560" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif">
+<rect width="1144" height="560" fill="#fcfcfb"/>
+<text x="44" y="52" font-size="26" font-weight="700" fill="#0b0b0b">MiniCPM5-2B on Apple Core AI: same int8 weights, one scale-granularity line apart</text>
+<text x="44" y="84" font-size="15" fill="#52514e">Decode tokens/s, greedy. coreai-opt quantization_config: per_channel vs per_block (block_size 32). fp16 is the uncompressed control.</text>
+<text x="44" y="130" font-size="17" font-weight="600" fill="#0b0b0b">Mac Studio M4 Max · macOS 27 beta</text>
+<text x="44" y="152" font-size="13" fill="#898781">llm-benchmark, 512-token prompt / 1024 generated, 5 trials</text>
+<line x1="259.0" y1="174" x2="259.0" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="259.0" y="390" font-size="12" fill="#898781" text-anchor="middle">0</text>
+<line x1="330.2" y1="174" x2="330.2" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="330.2" y="390" font-size="12" fill="#898781" text-anchor="middle">35</text>
+<line x1="401.5" y1="174" x2="401.5" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="401.5" y="390" font-size="12" fill="#898781" text-anchor="middle">70</text>
+<line x1="472.8" y1="174" x2="472.8" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="472.8" y="390" font-size="12" fill="#898781" text-anchor="middle">105</text>
+<line x1="544.0" y1="174" x2="544.0" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="544.0" y="390" font-size="12" fill="#898781" text-anchor="middle">140</text>
+<line x1="259" y1="174" x2="259" y2="372" stroke="#c3c2b7" stroke-width="1"/>
+<text x="247" y="208" font-size="14" fill="#52514e" text-anchor="end">int8 per-channel</text>
+<rect x="259" y="190" width="52.1" height="28" rx="4" fill="#9ec5f4"/>
+<text x="321.1" y="209" font-size="15" font-weight="600" fill="#0b0b0b">25.6</text>
+<text x="247" y="270" font-size="14" fill="#52514e" text-anchor="end">fp16 (no compression)</text>
+<rect x="259" y="252" width="162.9" height="28" rx="4" fill="#c3c2b7"/>
+<text x="431.9" y="271" font-size="15" font-weight="600" fill="#0b0b0b">80.0</text>
+<text x="247" y="332" font-size="14" fill="#52514e" text-anchor="end">int8 per-block-32 (shipped)</text>
+<rect x="259" y="314" width="259.8" height="28" rx="4" fill="#2a78d6"/>
+<text x="528.8" y="333" font-size="15" font-weight="600" fill="#0b0b0b">127.6</text>
+<text x="401.5" y="412" font-size="12" fill="#898781" text-anchor="middle">tokens / s</text>
+<text x="600" y="130" font-size="17" font-weight="600" fill="#0b0b0b">iPhone 17 Pro · iOS 27 beta</text>
+<text x="600" y="152" font-size="13" fill="#898781">PipelinedBench, 128-token prompt / 256 generated, cold</text>
+<line x1="815.0" y1="174" x2="815.0" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="815.0" y="390" font-size="12" fill="#898781" text-anchor="middle">0</text>
+<line x1="886.2" y1="174" x2="886.2" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="886.2" y="390" font-size="12" fill="#898781" text-anchor="middle">35</text>
+<line x1="957.5" y1="174" x2="957.5" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="957.5" y="390" font-size="12" fill="#898781" text-anchor="middle">70</text>
+<line x1="1028.8" y1="174" x2="1028.8" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1028.8" y="390" font-size="12" fill="#898781" text-anchor="middle">105</text>
+<line x1="1100.0" y1="174" x2="1100.0" y2="372" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1100.0" y="390" font-size="12" fill="#898781" text-anchor="middle">140</text>
+<line x1="815" y1="174" x2="815" y2="372" stroke="#c3c2b7" stroke-width="1"/>
+<text x="803" y="208" font-size="14" fill="#52514e" text-anchor="end">int8 per-channel</text>
+<rect x="815" y="190" width="46.2" height="28" rx="4" fill="#9ec5f4"/>
+<text x="871.2" y="209" font-size="15" font-weight="600" fill="#0b0b0b">22.7</text>
+<text x="803" y="270" font-size="14" fill="#52514e" text-anchor="end">fp16 (no compression)</text>
+<text x="827" y="270" font-size="13" fill="#898781">not run — 5.0 GB does not fit the phone</text>
+<text x="803" y="332" font-size="14" fill="#52514e" text-anchor="end">int8 per-block-32 (shipped)</text>
+<rect x="815" y="314" width="45.6" height="28" rx="4" fill="#2a78d6"/>
+<text x="870.6" y="333" font-size="15" font-weight="600" fill="#0b0b0b">22.4</text>
+<text x="957.5" y="412" font-size="12" fill="#898781" text-anchor="middle">tokens / s</text>
+<text x="44" y="500" font-size="13" fill="#52514e">Per-channel int8 lowers to a dequantize-then-matmul path on the Mac GPU; per-block-32 lands on the quantized-matmul path. On the phone decode is memory-bandwidth-bound either way.</text>
+<text x="44" y="522" font-size="13" fill="#52514e">Numerics: both int8 bundles 16/16 token-exact vs the fp32 oracle (margin-aware gate); per-block-32 also matches fp32 on a 30-token free-run where per-channel flipped a 0.245-margin token.</text>
+<text x="44" y="544" font-size="12" fill="#898781">github.com/john-rocky/coreai-model-zoo · models/minicpm5-2b · 2026-09-08</text>
+</svg>
