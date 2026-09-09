@@ -8,3 +8,11 @@ Demo media (GIFs / screenshots) referenced by the READMEs of
 Kept in a separate repo so the code repos stay small to clone.
 
 All captures are real devices (iPhone 17 Pro / M4 Max), models running fully on-device.
+
+## CoreAIKit 0.4.1 entry demo
+
+[33-second Mac demo](kit/coreaikit-0.4.1-mac.mp4): Qwen3 0.6B answers a question,
+then VoxCPM 0.5B generates a WAV. Both run through the published CoreAIKit 0.4.1
+examples on an M4 Max with macOS 27 beta and Xcode 27 beta 5. The clip labels its
+cached-model run; [exact versions and reproduction steps](kit/coreaikit-0.4.1-mac.md)
+lead back to the [CoreAIKit README](https://github.com/john-rocky/coreai-kit#readme).
