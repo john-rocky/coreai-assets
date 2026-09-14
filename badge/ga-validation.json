@@ -1,1 +1,1 @@
-{"schemaVersion": 1, "label": "GA validation", "message": "pending \u2014 the sweep runs on the GM build", "color": "lightgrey"}
+{"schemaVersion": 1, "label": "GA validation", "color": "red", "message": "3 failing \u00b7 21/279 bundles load on macOS 27.0 (26A428)"}
