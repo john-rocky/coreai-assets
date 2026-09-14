@@ -1,1 +1,1 @@
-{"schemaVersion": 1, "label": "GA validation", "color": "red", "message": "3 failing \u00b7 21/279 bundles load on macOS 27.0 (26A428)"}
+{"schemaVersion": 1, "label": "GA validation", "color": "yellow", "message": "in progress \u00b7 24/279 bundles load on macOS 27.0 (26A428)"}
