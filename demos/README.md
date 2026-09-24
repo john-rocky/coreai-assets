@@ -4,6 +4,19 @@ Short clips that show a zoo model doing the thing its card claims. Every frame i
 running the models, not illustrated — if a number or a transcript is on screen, it came out of a
 real run on the machine named beside it.
 
+## `nemotron-3-diarization-iphone.mp4` (86 s) and `nemotron-3-diarization-iphone-still.png`
+
+A synthetic 8-person meeting (74 s, voices from the zoo's Kokoro TTS port, a fictional company and
+fictional names) plays on an iPhone 17 Pro while
+[Nemotron-3-Diarization](https://github.com/john-rocky/coreai-model-zoo/blob/main/models/nemotron-3-diarization/README.md)
+labels who is speaking, streaming, about 1 s behind the audio (the model's 1.04 s look-ahead plus
+0.05 s of compute per 0.72 s chunk on the phone's GPU). The screen is coreai-audio's Diarize live view;
+the recording is QuickTime's mirror of the phone with the phone's own audio. Numbers on screen come
+from that run (2026-09-25 01:02, iOS 27.0). Posted on X on 2026-09-25.
+
+Rebuild it: `apps/coreai-audio/record-demo.sh n3d_meeting_16k` in the zoo (the app installed with the
+`N3DAssets` sideload; `--captions` adds the two caption lines).
+
 ## `pocket-tts-vs-kokoro.mp4` (15 s)
 
 One sentence — *"The bass player from Vyrantha read the lead sheet."* — read by two on-device
