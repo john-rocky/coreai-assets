@@ -20,7 +20,7 @@ the email and its sender are invented.
 by the runtime (JIT, read from the app's cache), the app relaunched and warmed up with one short
 decision before the press, no other GPU job running (the GPU at 0 % just before the press). The clip
 is a window recording of that run (`screencapture -l`, the title bar cut), normal speed, no audio;
-sha256 `3f98f0541118ede899fd7a85ca6425d257ebd597b98e5f2f25da6f78bc477f5a`.
+sha256 `3f98f0541118ede899fd7a85ca6425d257ebd597b98e5f2f25da6f78bc477f5a`. Posted on X on 2026-10-04.
 
 Rebuild it: `CoreAIDecisionFormMac -autoplay form -modelsFolder <dir> -trigger <file> -log 1` (the app's
 README) presses Sample email once the model is ready; record the window with
