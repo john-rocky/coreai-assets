@@ -64,3 +64,23 @@ clip demonstrates is his, from the request thread that started the port.
 
 Rebuild it: `make_compare_video2.py` in the zoo's scratch tooling renders every frame from the
 wavs, so the waveform is the real envelope and the transcript types at the playhead.
+
+## `eg2-transcribe-coreai-mac-20261014.mp4` (12 s)
+
+An 8.6 s LibriVox clip becomes text on a Mac Studio (M4 Max, 128 GB): the opening clause of *The Adventure of the
+Speckled Band* (read by Kirsten Ferreri, public domain) goes into EG2 Transcribe and its 27 words appear, all of them
+the words of the reference transcript. The app is `ios/` of
+[eg2-transcribe](https://github.com/john-rocky/eg2-transcribe) (SwiftUI); the models are the EmbeddingGemma 2 audio
+encoder and the eg2-transcribe reader v1 converted to Core AI
+([mlboydaisuke/EmbeddingGemma-2-Transcribe-CoreAI](https://huggingface.co/mlboydaisuke/EmbeddingGemma-2-Transcribe-CoreAI)),
+the encoder on the GPU and the reader with the Neural Engine preferred, the app's default on a Mac.
+
+"109 ms · ×79" on screen is the app's own clock from the file to the words (decode, log-mel, one 30 s window through
+both bundles), loading not counted. The run: 2026-10-14 13:26 JST, macOS 27.0 (26A428), Release build, the model folder
+= the published files, the Core AI cache warm (the same folder had transcribed this clip once before the take), the GPU
+idle (≤ 5 % for 10 s) before the take. The clip is a window recording of that run (`screencapture -l`, the toolbar cut),
+normal speed, no audio; sha256 `b264751be9ad54b2e68e9caf16ede17ab43caa9e5e1ffbefd93cb2579b600524`.
+
+Rebuild it: with the model folder in place (downloaded by the app, or copied to the folder its empty state names),
+`EG2Transcribe.app/Contents/MacOS/EG2Transcribe -autoplay <wav> -textSize 44` (the app's README) opens the file the way
+*Choose audio* does once the model is loaded; record the window with `screencapture -l <window id> -V 18 -x`.
