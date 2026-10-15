@@ -84,3 +84,18 @@ normal speed, no audio; sha256 `b264751be9ad54b2e68e9caf16ede17ab43caa9e5e1ffbef
 Rebuild it: with the model folder in place (downloaded by the app, or copied to the folder its empty state names),
 `EG2Transcribe.app/Contents/MacOS/EG2Transcribe -autoplay <wav> -textSize 44` (the app's README) opens the file the way
 *Choose audio* does once the model is loaded; record the window with `screencapture -l <window id> -V 18 -x`.
+
+## `eg2-transcribe-coreai-mac-20261015.mp4` (12 s)
+
+The same clip with reader v2 (6 layers, trained on LibriSpeech 960 h; reader v1 above was trained on train-clean-100):
+the 8.6 s opening clause of *The Adventure of the Speckled Band* goes into EG2 Transcribe on the Mac Studio (M4 Max,
+128 GB) and its 27 words appear, 26 of them the words of the reference transcript (the first comes out as "i'm" for
+"on"; the clip starts at a pause in the middle of the sentence). The models are the published folder of
+[mlboydaisuke/EmbeddingGemma-2-Transcribe-CoreAI](https://huggingface.co/mlboydaisuke/EmbeddingGemma-2-Transcribe-CoreAI)
+at revision `76865ae4`, the encoder on the GPU and reader v2 with the Neural Engine preferred, the app's default on a Mac.
+
+"105 ms · ×82" on screen is the app's own clock from the file to the words (decode, log-mel, one 30 s window through
+both bundles), loading not counted. The run: 2026-10-15 23:02 JST, macOS 27.0 (26A428), Release build, the Core AI cache
+warm (the same folder had transcribed this clip once before the take), the GPU idle (≤ 5 % for 10 s) before the take.
+The clip is a window recording of that run (`screencapture -l`, the toolbar cut), normal speed, no audio; sha256
+`8ff948d65876a174915750e58a04284f8b7c0ab33dc59688cc5dfa5899057b2e`. Rebuild it as above.
