@@ -99,3 +99,23 @@ both bundles), loading not counted. The run: 2026-10-15 23:02 JST, macOS 27.0 (2
 warm (the same folder had transcribed this clip once before the take), the GPU idle (≤ 5 % for 10 s) before the take.
 The clip is a window recording of that run (`screencapture -l`, the toolbar cut), normal speed, no audio; sha256
 `8ff948d65876a174915750e58a04284f8b7c0ab33dc59688cc5dfa5899057b2e`. Rebuild it as above.
+
+## `eg2-transcribe-coreai-iphone-20261016.mp4` (12 s)
+
+A 3.1 s sentence of the same LibriVox chapter ("my dear fellow i would not miss it for anything", read by Kirsten
+Ferreri, public domain) becomes text on an iPhone 18 Pro (iOS 27.2): EG2 Transcribe opens the file the way *Choose
+audio* does and its 10 words appear, all of them the words of the reference transcript. The models are the published
+folder of
+[mlboydaisuke/EmbeddingGemma-2-Transcribe-CoreAI](https://huggingface.co/mlboydaisuke/EmbeddingGemma-2-Transcribe-CoreAI)
+at revision `76865ae4` (`ios-h19p/`: the encoder and reader v2 compiled for the iPhone 18 Pro), the encoder and the
+reader on the GPU one window at a time, the app's default on an iPhone.
+
+"156 ms · ×20" on screen is the app's own clock from the file to the words (decode, log-mel, one 30 s window through
+both bundles), loading not counted; it is the first call after the launch, so slower per second of audio than the
+54-minute recording (12.0 s, ×271). The run: 2026-10-16 02:09 JST, Release build, thermal nominal, USB power. The clip is
+a capture of the phone's screen mirrored to the Mac over USB (the status bar's 9:41 is the mirror's own), the whole
+screen at 874 × 1900, normal speed, no audio; sha256
+`57d1749282b7665442692aeaf8c65087a294a4a0db8e554560557928410e79b5`.
+
+Rebuild it: with the model folder in the app's container, launch the app with `-autoplay <wav> -textSize 44` (devicectl,
+the app's README) and record the mirrored screen.
