@@ -119,3 +119,50 @@ screen at 874 × 1900, normal speed, no audio; sha256
 
 Rebuild it: with the model folder in the app's container, launch the app with `-autoplay <wav> -textSize 44` (devicectl,
 the app's README) and record the mirrored screen.
+
+## `minicpm-v-4.7-1b-watch-iphone-20261024.mp4` (40.7 s, with audio)
+
+Three rules typed as sentences — *water rushing over rows of stones* → Ripple, *a road bridge crossing over the river* →
+Spotlight (sound: horn), *a church with a tall spire* → Zoom (sound: bells) — and a drone clip (CC0, Wikimedia Commons: a
+river running over rows of stones, a road bridge, then a church with a spire among houses; no face, text or logo can be
+read in it) playing on an iPhone 18 Pro (iOS 27.2). Start, and the model checks one frame at a time with one yes / no
+line per rule; when a rule's answer turns yes, the app asks the model where the thing is in the model's own grounding
+form ("Detect <condition> in the picture and output its bounding box."), reads the first box of the answer, then holds
+the frame the model answered — the crop it saw, with a thin blue border — for 3 s while it edits that frame at the box
+(Core Image on the frame itself) and plays a short sound: Ripple spreads a circular wave from the box's middle and tints
+the wake blue, Spotlight keeps the box as it was (with a soft edge) and dims and desaturates the rest, Zoom enlarges
+the picture into a window around the box. The video is paused during a hold and goes on from where it stopped; the row
+turns YES; no words or symbols appear for a fire. The model is MiniCPM-V 4.7 1B converted to Core AI
+([mlboydaisuke/MiniCPM-V-4.7-1B-CoreAI](https://huggingface.co/mlboydaisuke/MiniCPM-V-4.7-1B-CoreAI) at revision
+`51278afd`, the `gpu-pipelined/` bundles: the decoder and the vision tower on the GPU). The screen is the Watch screen of
+the kit example [Examples/Look](https://github.com/john-rocky/coreai-kit/tree/main/Examples/Look): rules in words, one
+reaction each (a sound, a buzz, a spoken line, a timer, a count, a log line, or an effect = an edit of the held frame
+with a sound of its choice), and the camera, a picked video or the example photos as the source. The three sounds are
+CC0 recordings from Wikimedia Commons cut to 2.3–3.0 s (running water, a car horn, a church bell; the example's README
+lists the source pages).
+
+"first token 1.38 s · total 1.49 s" on screen is the app's own clock for the last frame: from the frame's call to the
+model to its first streamed text, and from taking the frame to its answer read; loading not counted (the model loads
+before READY), the box question and the hold not counted (they come after the answer). Over the run: 15 frames, the
+run 35.6 s (the 26 s video and three holds of 3 s), a median of 1,500 ms per frame (the first token after 1,383 ms),
+131 tokens in and 11–14 out per frame; each box question took 1,278–1,340 ms more (24–29 answer tokens). The rules
+fired on the frames taken 0.02 s, 5.78 s and 16.11 s into the video — each within about a second of the seconds where
+the same model on a Mac, given one frame a second with the same prompt, first answers yes (0, 5 and 15 s) — and nothing
+else fired. The boxes the model returned (per mille of the frame: left, top, right, bottom): `238 0 688 998` for the
+water (the river band; the box's middle on the water), `588 0 1000 181` for the bridge (the deck and abutment at the top
+right; the middle on the deck), `505 0 575 308` for the church (a strip beside the tower: its middle 8 ‰ of the width
+left of the tower and nave as drawn by eye; the zoom's window, 2.16×, holds the tower, the chapel and the trees beside
+them). Each hold started 2.76–2.84 s after its frame was taken (the yes / no answer, then the box question), its sound
+15–30 ms after that, and held the frame 3,015–3,032 ms. The run: 2026-10-24 02:46 JST, Release build (Look 1.0 from
+commit 1fb9943 of the example), a new process after a warm-up run, thermal nominal before and after, memory footprint
+344–414 MB, USB power, Wi-Fi on (so the line says `on-device`, not `offline`). The clip is the phone's screen mirrored
+to the Mac over USB with the phone's audio (AAC, 48 kHz), the app's 9:16 take layout cut to 1080 × 1920 at 30 fps (the
+status bar cut), from 3 s before Start to 2 s after the app's DONE, nothing in between cut, normal speed; sha256
+`81186cfc56a0aacf7428a67771b31a9fb15db40d18c1834efe89cebcc9531989` (23,646,961 bytes).
+
+Rebuild it: `tools/fetch_examples.sh` in the example fetches the video and the three sounds and cuts the 26 s clip and
+the sound clips; build the app with the sounds in `Sounds/`, copy the clip into the app's container and launch the app
+with `-watch 1 -source video -file Documents/flyover.mp4 -seconds 45 -delay 2 -trigger <file> -take 1 -frames 1 -log 1
+-quit 0 -cells box -rules "water rushing over rows of stones=effect:ripple|a road bridge crossing over the
+river=effect:spotlight/horn|a church with a tall spire=effect:zoom/bells"` (the example's README), push the trigger file
+once READY and VIDEO are in the app's log, and record the mirrored screen with its audio.
