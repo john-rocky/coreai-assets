@@ -166,3 +166,35 @@ with `-watch 1 -source video -file Documents/flyover.mp4 -seconds 45 -delay 2 -t
 -quit 0 -cells box -rules "water rushing over rows of stones=effect:ripple|a road bridge crossing over the
 river=effect:spotlight/horn|a church with a tall spire=effect:zoom/bells"` (the example's README), push the trigger file
 once READY and VIDEO are in the app's log, and record the mirrored screen with its audio.
+
+## `wevisone-vl-2b-cutout-iphone-20261027.mp4` (14.6 s, no audio)
+
+A photo of a kitten and a puppy (by blende12, CC0, Wikimedia Commons; 3543 × 2362) and the words "the kitten" on an
+iPhone 18 Pro (iOS 27.2, 24B5099f). Cut out, and the model finds what the words name and cuts it out with its soft edge:
+only the kitten, over a checkerboard, numbered 1; Save to Photos adds it to Photos as a PNG with the background removed
+(18,094,203 bytes, the photo's full size) and the screen says "Saved to Photos". The model is WeVisOne-VL-2B (Tencent;
+built upon Qwen3-VL, with a 9.5M-parameter pixel decoder) converted to Core AI
+([mlboydaisuke/WeVisOne-VL-2B-CoreAI](https://huggingface.co/mlboydaisuke/WeVisOne-VL-2B-CoreAI) at revision
+`c370b50f`, the `ios/` graphs: the text decoder, the vision tower and the pixel decoder's two graphs, all on the GPU).
+The screen is the kit example [Examples/Cutout](https://github.com/john-rocky/coreai-kit/tree/main/Examples/Cutout):
+pick or take a photo, type what to cut out, Cut out, Save.
+
+"boxes 0.59 s · matte 0.62 s" on screen is the app's own clock for this request: the boxes from Cut out to the model's
+answer (resize to 448 85 ms, the vision tower 98 ms, the prompt 152 ms, the 12-token answer 249 ms, and 3 ms of tokenizing and patching),
+then the matte (resize to 1024 58 ms, the mask inputs 19 ms, the pixel decoder's two graphs 127 ms and 410 ms, and 1 ms
+for the canvas); 1.212 s in all. The photo is larger than the card's lighthouse example (1024 × 683, 0.99–1.00 s): the
+two resizes take 143 ms here against 24–25 ms there, about half of the difference. The model's
+answer is `the kitten` at the box `96 375 399 1000` (per mille of the photo: left, top, right, bottom). The run:
+2026-10-27 05:11 JST, the example app as built on 2026-10-25 from the example's code, a new process after a warm-up run
+(1.18 s), thermal nominal, memory footprint peak 1.87 GB. The app's own autoplay (launch arguments; the example's
+README, "Autoplay and the record") put the photo and the words in and pressed Cut out and Save; everything on the screen is the
+app's own. The clip is the phone's screen recorded on the Mac (no audio), 1206 × 2622 at 30 fps (rows 186–2328 of the
+screen: the status bar above and the blank space under the app's footer cut) under a caption band (480 px, 44 pt: the
+model and the phone, "Cut out" and the words, the screen's two numbers, "Saved to Photos"), from 2.0 s before the photo appears to 2.7 s after "Saved to Photos", nothing
+in between cut, normal speed; sha256 `e084371c7dcf9857dd821d0239ddb9ffd1444ad30d5487c6b000533a44f2282e` (1,696,933
+bytes).
+
+Rebuild it: put the photo in the app's Documents (the example's README: Run it), launch the app with `-autoplay 1
+-image <the photo> -words "the kitten" -delay 3 -gap 2.5 -save 1 -hold 4 -frames 1 -log 1 -quit 1` (devicectl, the
+arguments after `--`; `-delay`, `-gap` and `-hold` are the seconds before the pick, between the steps and after the
+save), and record the phone's screen on the Mac.
